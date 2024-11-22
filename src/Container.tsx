@@ -7,14 +7,18 @@ const Container = () => {
   const [selectedComponent, setSelectedComponent] = useState('');
 
   const availableComponents = loadComponents();
+  console.log(availableComponents);
 
   const addComponent = () => {
     const componentToAdd = availableComponents.find(comp => comp.name === selectedComponent);
+    console.log(componentToAdd)
     if (componentToAdd) {
       const newComponent = {
         id: Date.now(),
         type: componentToAdd.name,
         component: componentToAdd.component,
+        properties: componentToAdd.properties,
+        // properties: componentToAdd.proper
       };
       setComponents([...components, newComponent]);
       setSelectedComponent(''); // Reset selection
@@ -32,7 +36,7 @@ const Container = () => {
       </select>
       <button onClick={addComponent}>Add Component</button>
       {components.map(component => (
-        <ComponentItem key={component.id} component={component} />
+        <ComponentItem key={component.id} component={component} properties={component.properties} />
       ))}
     </div>
   );

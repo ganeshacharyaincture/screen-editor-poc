@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import ComponentDialog from './ComponentDialog';
 
-const ComponentItem = ({ component }) => {
+const ComponentItem = ({ component, properties }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   const openDialog = () => {
     setIsDialogOpen(true);
   };
@@ -18,7 +17,7 @@ const ComponentItem = ({ component }) => {
         {component.type} Component
       </div>
       {isDialogOpen && (
-        <ComponentDialog component={component} onClose={closeDialog} />
+        <ComponentDialog component={component} onClose={closeDialog} propertiez={properties} />
       )}
     </div>
   );

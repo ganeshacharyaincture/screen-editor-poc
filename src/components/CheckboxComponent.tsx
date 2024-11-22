@@ -5,8 +5,12 @@ const CheckboxComponent = () => {
 };
 
 export const checkboxComponentProperties = {
-  title: { type: 'text', label: 'Title', defaultValue: '' },
-  checked: { type: 'boolean', label: 'Checked', defaultValue: false },
+  title: { type: 'text', label: 'Title', value: '' },
+  checked: { type: 'boolean', label: 'Checked', value: false },
 };
 
-export default CheckboxComponent;
+export default {
+  name: 'CheckboxComponent',
+  component: CheckboxComponent,
+  properties: checkboxComponentProperties,
+};

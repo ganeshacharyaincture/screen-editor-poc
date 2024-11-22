@@ -1,14 +1,18 @@
 import React from 'react';
 
-const TextComponent = () => {
+const TextComponent: React.FC = () => {
   return <div>Text Component</div>;
 };
 
 export const textComponentProperties = {
-  title: { type: 'text', label: 'Title', defaultValue: '' },
-  type: { type: 'text', label: 'Type', defaultValue: '' },
-  value: { type: 'text', label: 'Value', defaultValue: '' },
-  color: { type: 'color', label: 'Color', defaultValue: '#000000' },
+  title: { type: 'text', label: 'Title', value: '' },
+  type: { type: 'text', label: 'Type', value: '' },
+  value: { type: 'text', label: 'Value', value: '' },
+  color: { type: 'color', label: 'Color', value: '#000000' },
 };
 
-export default TextComponent;
+export default {
+  name: 'CheckboxComponent',
+  component: TextComponent,
+  properties: textComponentProperties,
+};

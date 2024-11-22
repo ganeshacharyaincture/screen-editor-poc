@@ -5,8 +5,12 @@ const ButtonComponent = () => {
 };
 
 export const buttonComponentProperties = {
-  title: { type: 'text', label: 'Title', defaultValue: '' },
-  onClick: { type: 'text', label: 'On Click Action', defaultValue: '' },
+  title: { type: 'text', label: 'Title', value: '' },
+  onClick: { type: 'text', label: 'On Click Action', value: '' },
 };
 
-export default ButtonComponent;
+export default {
+  name: 'ButtonComponent',
+  component: ButtonComponent,
+  properties: buttonComponentProperties,
+};
