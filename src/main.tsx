@@ -5,11 +5,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import {createLogger} from 'redux-logger';
 import './index.css'
 import App from './App.tsx'
-import containerReducer from "./redux/container.ts";
+import containerReducer from "./redux/container";
+import componentReducer from "./redux/component";
 
 const store = configureStore({
     reducer: {
-        container: containerReducer
+        container: containerReducer,
+        component: componentReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(createLogger())
 })

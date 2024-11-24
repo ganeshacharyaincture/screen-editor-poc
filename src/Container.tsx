@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
 import { loadComponents } from './loadComponents';
 import ComponentItem from './ComponentItem';
+import {useDispatch, useSelector} from "react-redux";
+import {addComponent} from "./redux/component"
+import {upsertComponent} from "./redux/container";
 
-const Container = () => {
-  const [components, setComponents] = useState([]);
+import type {RootState} from "./main.tsx";
+
+type ContainerProps = {
+    containerId: number
+}
+const Container: React.FC<ContainerProps> = ({containerId}) => {
+  const components = useSelector((state: RootState) => state.container.containers.find(c => c.id === containerId)?.components || [])
+  const dispatch = useDispatch()
   const [selectedComponent, setSelectedComponent] = useState('');
 
   const availableComponents = loadComponents();
-  console.log(availableComponents);
 
-  const addComponent = () => {
+  const addComponentz = () => {
     const componentToAdd = availableComponents.find(comp => comp.name === selectedComponent);
-    console.log(componentToAdd)
     if (componentToAdd) {
       const newComponent = {
         id: Date.now(),
         type: componentToAdd.name,
         component: componentToAdd.component,
         properties: componentToAdd.properties,
-        // properties: componentToAdd.proper
       };
-      setComponents([...components, newComponent]);
+      dispatch(addComponent({containerId, component:{...newComponent}}))
+      // dispatch(upsertComponent({containerId, component: {...newComponent} }))
       setSelectedComponent(''); // Reset selection
     }
   };
@@ -34,7 +41,7 @@ const Container = () => {
           <option key={comp.name} value={comp.name}>{comp.name}</option>
         ))}
       </select>
-      <button onClick={addComponent}>Add Component</button>
+      <button onClick={addComponentz}>Add Component</button>
       {components.map(component => (
         <ComponentItem key={component.id} component={component} properties={component.properties} />
       ))}
